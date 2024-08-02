@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alpha Attention</title>
+    <link rel="icon" href="favicon.ico" >
+      <!-- <script src="script.js"></script> -->
+  
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+		<script type="text/javascript">
+			window.tailwind.config = {
+				darkMode: ['class'],
+				theme: {
+					extend: {
+						colors: {
+							border: 'hsl(var(--border))',
+							input: 'hsl(var(--input))',
+							ring: 'hsl(var(--ring))',
+							background: 'hsl(var(--background))',
+							foreground: 'hsl(var(--foreground))',
+							primary: {
+								DEFAULT: 'hsl(var(--primary))',
+								foreground: 'hsl(var(--primary-foreground))'
+							},
+							secondary: {
+								DEFAULT: 'hsl(var(--secondary))',
+								foreground: 'hsl(var(--secondary-foreground))'
+							},
+							destructive: {
+								DEFAULT: 'hsl(var(--destructive))',
+								foreground: 'hsl(var(--destructive-foreground))'
+							},
+							muted: {
+								DEFAULT: 'hsl(var(--muted))',
+								foreground: 'hsl(var(--muted-foreground))'
+							},
+							accent: {
+								DEFAULT: 'hsl(var(--accent))',
+								foreground: 'hsl(var(--accent-foreground))'
+							},
+							popover: {
+								DEFAULT: 'hsl(var(--popover))',
+								foreground: 'hsl(var(--popover-foreground))'
+							},
+							card: {
+								DEFAULT: 'hsl(var(--card))',
+								foreground: 'hsl(var(--card-foreground))'
+							},
+						},
+					}
+				}
+			}
+		</script>
+		<style type="text/tailwindcss">
+			@layer base {
+				:root {
+					--background: 0 0% 100%;
+--foreground: 240 10% 3.9%;
+--card: 0 0% 100%;
+--card-foreground: 240 10% 3.9%;
+--popover: 0 0% 100%;
+--popover-foreground: 240 10% 3.9%;
+--primary: 240 5.9% 10%;
+--primary-foreground: 0 0% 98%;
+--secondary: 240 4.8% 95.9%;
+--secondary-foreground: 240 5.9% 10%;
+--muted: 240 4.8% 95.9%;
+--muted-foreground: 240 3.8% 46.1%;
+--accent: 240 4.8% 95.9%;
+--accent-foreground: 240 5.9% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 5.9% 90%;
+--input: 240 5.9% 90%;
+--ring: 240 5.9% 10%;
+--radius: 0.5rem;
+				}
+				.dark {
+					--background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--primary: 0 0% 98%;
+--primary-foreground: 240 5.9% 10%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--ring: 240 4.9% 83.9%;
+				}
+			}
+		</style>
+  </head>
+  <body>
+
+	<!-- header part -->
+    <div class="flex flex-col h-screen">
+  <div class="flex justify-between items-center p-4">
+    <div class="flex items-center">
+      <img src="logo_2x.png" alt="Logo" class="h-10" />
+      <h1 class="text-blue-600 font-bold ml-2">ALPHA ATTENTION</h1>
+    </div>
+    <button onclick="goBack()" class="bg-blue-600 text-white px-8 pl-6 py-6 rounded transition duration-300 ease-in-out hover:bg-blue-700">Login</button>
+  </div> 
+<!-- 
+Body part -->
+<button class="bg-transparent hover:bg-blue-200 text-blue-600 font-bold py-1 px-2 rounded inline-flex items-center text-sm md:text-base lg:text-lg">
+	Go Back
+  </button>
+   <div id="container" class="flex flex-col items-center justify-center flex-grow"> 
+
+	<div  class="flex flex-col  items-center justify-center  pb-10  py-8 px-10 w-22 h-14  flex-grow">
+			
+			<div id="question"  class= "flex text-2xl font-bold text-center mt-14  items-center justify-center w-22 h-24  "></div>
+        
+			<div  class= "flex  items-center justify-center w-22 h-24  bg-red "> <p>(Click one of two boxes below)</p></div>
+		
+ <!-- Button part -->
+    <div class="flex justify-center w-full mb-36"> 
+		<div id="options"  class= "text-xl font-bold py-6 px-2 mb-4 mt-4 "></div>
+		<button id="yes" class=" bg-blue-400  text-white hover:bg-blue-500 object-cover p-2 flex justify-center items-center w-28 h-34">
+        <img src="Yes.png" alt="Yes" class="w-22 h-24" />
+      </button>
+      <button id="no" class="bg-blue-400  text-white hover:bg-blue-500 p-2 flex items-center justify-center w-28 h-34 ml-4">
+        <img src="NO.png" alt="No" class="w-22 h-24 " />
+      </button> 
+	</div>
+
+	  <!-- Iframe part -->
+	  
+<div id="content" style="display: none;">
+	<!-- Paste iframe tag here -->
+	<iframe src="program.html" frameborder="0" width="100%" height="500"></iframe> 
+  </div>
+
+    <!-- </div>
+    <div id="container" class="hidden">
+      <iframe src="your_iframe_source_here" class="w-full h-64" title="Information"></iframe>
+    </div> -->
+  </div>
+
+<!-- 
+Footer part -->
+
+<footer class="bg-primary text-primary-foreground p-4 sticky bottom-0 w-full">
+	<div class="flex justify-around">
+		<a href="#" class="hover:text-primary-foreground">© 2024 alphaattention</a>
+		<a href="#" class="hover:text-primary-foreground">info@alphaattention.in</a>
+	  <a href="#" class="hover:text-primary-foreground">Privacy policy</a>
+	  <a href="#" class="hover:text-primary-foreground">Terms of service</a>
+	  <a href="#" class="hover:text-primary-foreground">Refund Policy</a>
+	  <!-- <a href="#" class="hover:text-primary-foreground">Anchor6</a> -->
+	</div>
+  </footer>
+  
+</div>
+<script type="module" src="script.js" ></script>
+<!-- <script type="module" src="script.js"></script> -->
+
+  </body>
+</html>
